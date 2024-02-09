@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Temperature Control Panel</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Temperature Control Panel</h2>
+        <div class="ingredient">
+            <label for="ingredient1">Temp 01:</label>
+            <input type="range" id="ingredient1" value="25" min="0" max="100">
+            <span id="temperature1">25°C</span>
+        </div>
+
+        <div class="ingredient">
+            <label for="ingredient2">Temp 02:</label>
+            <input type="range" id="ingredient2" value="30" min="0" max="100">
+            <span id="temperature2">30°C</span>
+        </div>
+
+        <div class="ingredient">
+            <label for="ingredient3">Temp 03:</label>
+            <input type="range" id="ingredient3" value="20" min="0" max="100">
+            <span id="temperature3">20°C</span>
+        </div>
+
+        <div class="ingredient">
+            <label for="ingredient4">Temp 04:</label>
+            <input type="range" id="ingredient4" value="40" min="0" max="100">
+            <span id="temperature4">40°C</span>
+        </div>
+
+        <button onclick="startProcess()">Start Process</button>
+    </div>
+    <div class="time-panel" id="timePanel">
+        <h2>Time Remaining</h2>
+        <div id="timeDisplay">00:00:00</div>
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
