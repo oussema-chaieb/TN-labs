@@ -16,6 +16,7 @@ Config.labs = {
     coke = {
         inside = vector4(1088.68, -3187.87, -38.99, 275.5),
         outside = vector4(308.16, -1819.14, 3.07, 315.34),
+        repairped = vector4(1090.69, -3190.49, -39.99, 87.68),
         Security = "keys",  -- password / keys / citizenid / job / gang
         job = {["cardealer"] = 0, ["mechanic"] = 1},
         gang = {["ballas"] = 1, ["vagos"] = 2},
@@ -288,8 +289,7 @@ Config.coke = {
         },
     },  
     processleafIngrediants = {
-        ["coca_leaf"] = 4,
-        ["empty_green_boxes"] = 1,
+        ["coca_leaf"] = 4
     },
     processleafRewards = {
         ["coke_box"] = 1

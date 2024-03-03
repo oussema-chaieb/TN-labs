@@ -53,7 +53,7 @@ RegisterNetEvent("tn-labs:sv:meth:package",function()
     local info = {
         quality = quality
     }
-    local amount = math.random(7,10)
+    local amount = math.random(4,6)
     Player.Functions.AddItem('methamine', amount, false, info)
     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['methamine'], "add", amount)
 end)
@@ -90,5 +90,23 @@ QBCore.Functions.CreateCallback('tn-labs:sv:CheckArraysCountThree', function(sou
     cb(amount)
 end)
 
+QBCore.Functions.CreateCallback('tn-labs:sv:CheckCanPassMethArray', function(source, cb)
+    local query = "SELECT rewardfirststage, rewardsecondstage, rewardthirdstage FROM lab WHERE labname = ?"
+    local values = {"methlab"}
+    MySQL.Async.fetchAll(query, values, function(result)
+        if result[1] then
+            local rewardfirststage = tonumber(result[1].rewardfirststage) or 0
+            local rewardsecondstage = tonumber(result[1].rewardsecondstage) or 0
+            local rewardthirdstage = tonumber(result[1].rewardthirdstage) or 0
 
+            if rewardfirststage == 0 and rewardsecondstage == 0 and rewardthirdstage == 0 then
+                cb(true)
+            else
+                cb(false)
+            end
+        else
+            cb(false)
+        end
+    end)
+end)
 

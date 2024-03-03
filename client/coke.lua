@@ -1,12 +1,16 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
 local haschangedclothes = false
+local procanim = false
+local packageanim = false
+local unpackageanimation = false
+local procleaf = false
 -- Target
 CreateThread(function()
     for k, v in pairs(Config.coke.locations) do
         local options = {}
         for _, option in pairs(v.options) do
-            print(option.label)
+           -- print(option.label)
             options[#options + 1] = {
                 event = option.event,
                 icon = option.icon,
@@ -46,8 +50,7 @@ CreateThread(function()
     while not HasModelLoaded("g_m_m_chemwork_01") do
         Wait(0)
     end
-    vector4(1090.69, -3190.49, -38.99, 87.68)
-    local ped = CreatePed(0, joaat("g_m_m_chemwork_01"), 1090.69, -3190.49, -38.99 - 1, 87.68, false, false)
+    local ped = CreatePed(0, joaat("g_m_m_chemwork_01"), Config.labs.coke.repairped.x, Config.labs.coke.repairped.y, Config.labs.coke.repairped.z, Config.labs.coke.repairped.w, false, false)
     TaskStartScenarioInPlace(ped, "WORLD_HUMAN_DRUG_DEALER", 0, true)
     PlaceObjectOnGroundProperly(ped)
     FreezeEntityPosition(ped, true)
@@ -189,6 +192,7 @@ local function processAnim()
         DeleteEntity(entitiesList[i])
     end
     RemoveAnimDict(animDict)
+    procanim = false
     FreezeEntityPosition(ped, false)
 end
 
@@ -304,8 +308,6 @@ local function packageCoke()
         QBCore.Functions.Notify("You successfly put the ingrediants", "success")
         TriggerServerEvent("tn-labs:sv:coke:removeandgiveitems",Config.coke.packageIngrediants ,Config.coke.packageRewards)
     end
-    -- Citizen.Wait(animDuration)
-    --Citizen.Wait(45000)
     for i=1, #scenesList, 1 do
         NetworkStopSynchronisedScene(scenesList[i])
     end
@@ -313,6 +315,7 @@ local function packageCoke()
         DeleteEntity(entitiesList[i])
     end
     RemoveAnimDict(animDict)
+    packageanim = false
     FreezeEntityPosition(ped, false)
 end
 
@@ -368,6 +371,7 @@ local function unpackageanim()
         QBCore.Functions.Notify("You successfly put the ingrediants", "success")
         TriggerServerEvent("tn-labs:sv:coke:removeandgiveitems", Config.coke.unpackageIngrediants, Config.coke.unpackageRewards)
     end
+    unpackageanimation = false
     Wait(GetAnimDuration(dict, "fullcut_cycle_v1_cokepacker") * 450)
     SetEntityVisible(CokeScoop, true, 0)
     Wait(GetAnimDuration(dict, "fullcut_cycle_v1_cokepacker") * 65)
@@ -410,13 +414,16 @@ local function intoboxanim()
     else
         DeleteObject(object)
     end
+    procleaf = false
     FreezeEntityPosition(PlayerPedId(), false)
 end
 
 RegisterNetEvent('tn-labs:cl:coke:leafproc', function()
+    if procleaf then return QBCore.Functions.Notify("Nonnnn", "error") end
     local hasIngredients = hasRequiredIngredients(Config.coke.processleafIngrediants)
     if hasIngredients then
         if HackUi(Config.meth.mixingHackUi, Config.meth.mixingHackUiType) then
+            procleaf = true
             intoboxanim()
         else
             QBCore.Functions.Notify("you failed", "error")
@@ -427,9 +434,11 @@ RegisterNetEvent('tn-labs:cl:coke:leafproc', function()
 end)
 
 RegisterNetEvent('tn-labs:cl:coke:unpackage', function()
+    if unpackageanimation then return QBCore.Functions.Notify("Nonnnn", "error") end
     local hasIngredients = hasRequiredIngredients(Config.coke.unpackageIngrediants)
     if hasIngredients then
         if HackUi(Config.meth.mixingHackUi, Config.meth.mixingHackUiType) then
+            unpackageanimation = true
             unpackageanim()
         else
             QBCore.Functions.Notify("you failed", "error")
@@ -440,9 +449,11 @@ RegisterNetEvent('tn-labs:cl:coke:unpackage', function()
 end)
 
 RegisterNetEvent('tn-labs:cl:coke:process', function()
+    if procanim then return QBCore.Functions.Notify("Nonnnn", "error") end
     local hasIngredients = hasRequiredIngredients(Config.coke.processIngrediants)
     if hasIngredients then
         if HackUi(Config.meth.mixingHackUi, Config.meth.mixingHackUiType) then
+            procanim = true
             processAnim()
         else
             QBCore.Functions.Notify("you failed", "error")
@@ -453,9 +464,11 @@ RegisterNetEvent('tn-labs:cl:coke:process', function()
 end)
 
 RegisterNetEvent('tn-labs:cl:coke:package', function()
+    if packageanim then return QBCore.Functions.Notify("Nonnnn", "error") end
     local hasIngredients = hasRequiredIngredients(Config.coke.packageIngrediants)
     if hasIngredients then
         if HackUi(Config.meth.mixingHackUi, Config.meth.mixingHackUiType) then
+            packageanim = true
             packageCoke()
         else
             QBCore.Functions.Notify("you failed", "error")

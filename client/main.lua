@@ -278,8 +278,8 @@ RegisterNetEvent('tn-labs:cl:enterAttempt', function(data)
         })
         QBCore.Functions.TriggerCallback('tn-labs:sv:getData', function(combination)
             if keyboard then
-                print(input)
-                print(combination)
+                --print(input)
+               -- print(combination)
                 if input == combination then
                     PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
                     Enterlab(data.data.inside)
@@ -333,21 +333,12 @@ function checkPedClothes()
     local shoes = GetPedDrawableVariation(PlayerPedId(), 6)
     local accessoire = GetPedDrawableVariation(PlayerPedId(), 7)
     local hat = GetPedPropIndex(PlayerPedId(), 0)
-    print("Mask ID: " .. mask)
-    print("Pants ID: " .. pants)
-    print("Shirt ID: " .. shirt)
-    print("Jacket ID: " .. jacket)
-    print("Arms ID: " .. arms)
-    print("Shoes ID: " .. shoes)
-    print("Accessory ID: " .. accessoire)
-    print("Hat Texture Index: " .. hat)
-    -- Check for male or female player model
     local isMale = IsPedModel(PlayerPedId(), 'mp_m_freemode_01')
     local isFeMale = IsPedModel(PlayerPedId(), 'mp_f_freemode_01')
     local other = IsPedModel(PlayerPedId(), 's_m_y_factory_01')
     local other2 = IsPedModel(PlayerPedId(), 's_f_y_factory_01')
     if other or other2 then return true end
-    local config = isMale and Config.meth.Outfits.male or isFeMale and Config.meth.Outfits.female
+    local config = (isMale and Config.meth.Outfits.male) or (isFeMale and Config.meth.Outfits.female)
 
     -- Check if each item matches the configuration
     return (

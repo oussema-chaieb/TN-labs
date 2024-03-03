@@ -89,6 +89,14 @@ local function checkLabQuality()
     return Citizen.Await(p)
 end
 
+local function checkMethArrayCanPass()
+    local p = promise.new()
+    QBCore.Functions.TriggerCallback('tn-labs:sv:CheckCanPassMethArray', function(result)
+        p:resolve(result)
+    end)
+    return Citizen.Await(p)
+end
+
 local function checkMethArrayAmount()
     local p = promise.new()
     QBCore.Functions.TriggerCallback('tn-labs:sv:CheckArraysCount', function(result)
@@ -372,8 +380,10 @@ end)
 RegisterNetEvent('tn-labs:cl:meth:passToMethArray', function()
     local time = checkWaitTime()
     local quality = checkLabQuality()
+    local passmetharraycanp = checkMethArrayCanPass()
     local metharrayamount = Config.meth.methArrayReward
     if time < 1 and quality > 0 then
+        if not passmetharraycanp then return QBCore.Functions.Notify("you need to empty the meth and package them first", "error") end
         FreezeEntityPosition(PlayerPedId(), true)
         TriggerEvent('animations:client:EmoteCommandStart', {"notepad2"})
         QBCore.Functions.Progressbar("passToMethArray", "empty the mixer", 30 * 1000, false, false, {
@@ -545,7 +555,7 @@ end
 
 RegisterNetEvent('tn-labs:cl:meth:hammerMethArray', function()
     local amount = checkMethArrayAmountTwo()
-    if not hummerani then return QBCore.Functions.Notify("Nonnnn", "error") end
+    if hummerani then return QBCore.Functions.Notify("Nonnnn", "error") end
     if amount > 0 then
         hummerani = true
         hummeranimation()
@@ -674,7 +684,7 @@ end
 
 RegisterNetEvent('tn-labs:cl:meth:package', function()
     local amount = checkMethArrayAmountThree()
-    if not addmetharrayani then return QBCore.Functions.Notify("Nonnnn", "error") end
+    if addmetharrayani then return QBCore.Functions.Notify("Nonnnn", "error") end
     if amount > 0 then
         addmetharrayani = true
         PackageMethAnim()
