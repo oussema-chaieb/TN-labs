@@ -1,0 +1,70 @@
+local Translations = {
+    error = {
+        missingstormram = "¡No tienes un Stormram contigo..!",
+        notpolice = "No eres policía",
+        incorrectpassword = "¡Contraseña incorrecta!",
+        missingkey = "Te faltan las llaves",
+        notauthorized = "No estás autorizado",
+        middleofprocess = "Necesitas llegar al final del proceso",
+        failure = "Fallaste",
+        missingingrediants = "Te falta algo",
+        mixeurfull = "El mezclador está lleno",
+        putingrediantsfirst = "Primero debes poner los ingredientes",
+        emptymixerfirst = "Primero debes vaciar el mezclador",
+        machineisworking = "La máquina ya está funcionando",
+        cancel = "¡Has cancelado!",
+        couldntpassmetharray = "Necesitas vaciar el meth y empaquetarlo primero",
+        machinestillworking = "La máquina todavía está funcionando",
+        nometharraytotake = "¡No hay un array de meth para tomar!",
+        noarrays = "No hay arrays aquí",
+        brokenfigureneeded = "Necesitas %{count} figuras rotas",
+        tookmetharrayfirst = "Primero necesitas tomar el array de meth",
+    },
+    success = {
+        putingrediants = "Has puesto los ingredientes con éxito",
+        Packagecoke = "Has empaquetado la cocaína con éxito",
+        procurecoke = "Has adquirido la cocaína con éxito",
+        Pouringcoke = "Has vertido la cocaína con éxito",
+        changecolthesback = "¡Es hora de irse!",
+        changelabclothes = "¡Has cambiado de ropa! ¡Empecemos a trabajar!",
+        machinestarted = "La máquina ha comenzado",
+        emptymixer = "Has vaciado el mezclador",
+        takemetharray = "Buen trabajo",
+        addMethArray = "Buen trabajo",
+        hammerMethArray = "¡Vas bien hasta ahora!",
+        packagereceive = "¡Has recibido tu meth!",
+    },
+    progressbar = {
+        repairfigurine = "Discute con el empleado para reparar la figurilla",
+        changeclothes = "Cambiando de ropa",
+        setuptemp = "Configurar temperatura",
+        emptymixer = "Vaciar el mezclador",
+        takemetharray = "Tomar el array de meth",
+        addmetharray = "Agregar el array de meth",
+    },
+    label = {
+        enterlab = "Entrar al laboratorio",
+        leavelab = "Salir del laboratorio",
+        changepasscode = "Cambiar código de acceso",
+        repairfigurine = "Reparar figurilla",
+        puringcoke = "Vertiendo cocaína",
+        packagecoke = "Empaquetando cocaína",
+        procurecoke = "Adquiriendo cocaína",
+        Pouringcoke = "Vertiendo cocaína en la caja",
+        breakfigure = "Rompiendo figura"
+    },
+    menu = {
+        enterlabheader = "Entrar al laboratorio",
+        enterlabtext = "",
+        raidlockheader = "Bloqueo de incursión",
+        raidlocktext = "",
+        exitHeader = "Salir",
+        ingrediantsleftHeader = "Ingredientes restantes",
+        metharrayleftheader = "Arrays de meth dentro de la máquina",
+    }
+}
+
+Lang = Lang or Locale:new({
+    phrases = Translations,
+    warnOnMissing = true
+})

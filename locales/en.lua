@@ -41,8 +41,6 @@ local Translations = {
         emptymixer = "empty the mixer",
         takemetharray = "Took Meth Array",
         addmetharray = "Add Meth Array",
-
-
     },
     label = {
         enterlab = "Enter Lab",
@@ -54,7 +52,6 @@ local Translations = {
         procurecoke = "Procuring coke",
         Pouringcoke = "Pouring Coke into the box",
         breakfigure = "Breaking figure"
-
     },
     menu = {
         enterlabheader = "Enter Lab",
@@ -64,7 +61,6 @@ local Translations = {
         exitHeader = "Exit",
         ingrediantsleftHeader = "Ingrediants left",
         metharrayleftheader = "Meth Arrays inside The Machine",
-
     }
 }
 

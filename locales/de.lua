@@ -1,0 +1,70 @@
+local Translations = {
+    error = {
+        missingstormram = "Du hast keinen Stormram dabei...",
+        notpolice = "Du bist kein Polizist",
+        incorrectpassword = "Falsches Passwort!",
+        missingkey = "Du hast die Schlüssel vergessen",
+        notauthorized = "Du bist nicht autorisiert",
+        middleofprocess = "Du musst bis zum Ende des Prozesses gehen",
+        failure = "Du hast versagt",
+        missingingrediants = "Dir fehlt etwas",
+        mixeurfull = "Der Mixer ist voll",
+        putingrediantsfirst = "Du musst zuerst die Zutaten hinzufügen",
+        emptymixerfirst = "Du musst zuerst den Mixer leeren",
+        machineisworking = "Die Maschine arbeitet bereits",
+        cancel = "Du hast abgebrochen!",
+        couldntpassmetharray = "Du musst das Meth leeren und verpacken, bevor du weitermachen kannst",
+        machinestillworking = "Die Maschine arbeitet noch",
+        nometharraytotake = "Es gibt kein Meth-Array zum Nehmen!",
+        noarrays = "Keine Arrays hier",
+        brokenfigureneeded = "Du benötigst %{count} kaputte Figuren",
+        tookmetharrayfirst = "Du musst zuerst das Meth-Array nehmen",
+    },
+    success = {
+        putingrediants = "Du hast die Zutaten erfolgreich hinzugefügt",
+        Packagecoke = "Du hast das Kokain erfolgreich verpackt",
+        procurecoke = "Du hast das Kokain erfolgreich beschafft",
+        Pouringcoke = "Du hast das Kokain erfolgreich eingegossen",
+        changecolthesback = "Es ist Zeit zu gehen!",
+        changelabclothes = "Du hast deine Kleidung gewechselt! Lass uns anfangen zu arbeiten",
+        machinestarted = "Die Maschine wurde gestartet",
+        emptymixer = "Du hast den Mixer geleert",
+        takemetharray = "Gute Arbeit",
+        addMethArray = "Gute Arbeit",
+        hammerMethArray = "Du machst bis jetzt gute Fortschritte!",
+        packagereceive = "Du hast dein Meth erhalten!",
+    },
+    progressbar = {
+        repairfigurine = "Diskutiere mit dem Mitarbeiter, um die Figurine zu reparieren",
+        changeclothes = "Kleidung wechseln",
+        setuptemp = "Temperatur einstellen",
+        emptymixer = "Mixer leeren",
+        takemetharray = "Meth-Array nehmen",
+        addmetharray = "Meth-Array hinzufügen",
+    },
+    label = {
+        enterlab = "Labor betreten",
+        leavelab = "Labor verlassen",
+        changepasscode = "Passwort ändern",
+        repairfigurine = "Figurine reparieren",
+        puringcoke = "Kokain eingießen",
+        packagecoke = "Kokain verpacken",
+        procurecoke = "Kokain beschaffen",
+        Pouringcoke = "Kokain in die Box gießen",
+        breakfigure = "Figurine zerbrechen"
+    },
+    menu = {
+        enterlabheader = "Labor betreten",
+        enterlabtext = "",
+        raidlockheader = "Razzia-Sperre",
+        raidlocktext = "",
+        exitHeader = "Verlassen",
+        ingrediantsleftHeader = "Verbleibende Zutaten",
+        metharrayleftheader = "Meth-Arrays in der Maschine",
+    }
+}
+
+Lang = Lang or Locale:new({
+    phrases = Translations,
+    warnOnMissing = true
+})

@@ -1,0 +1,70 @@
+local Translations = {
+    error = {
+        missingstormram = "ليس لديك Stormram معك..",
+        notpolice = "أنت لست شرطيًا",
+        incorrectpassword = "كلمة المرور غير صحيحة!",
+        missingkey = "أنت بحاجة لمفاتيح",
+        notauthorized = "أنت غير مخول",
+        middleofprocess = "تحتاج إلى الوصول إلى نهاية العملية",
+        failure = "فشلت",
+        missingingrediants = "هناك شيء مفقود",
+        mixeurfull = "المحضر ممتلئ",
+        putingrediantsfirst = "تحتاج إلى وضع المكونات أولاً",
+        emptymixerfirst = "تحتاج إلى تفريغ المحضر أولاً",
+        machineisworking = "الجهاز يعمل بالفعل",
+        cancel = "لقد ألغيت!",
+        couldntpassmetharray = "تحتاج إلى تفريغ الميث وتغليفها أولاً",
+        machinestillworking = "الجهاز لا يزال يعمل",
+        nometharraytotake = "لا يوجد مصفوفة ميث للأخذ!",
+        noarrays = "لا يوجد مصفوفات هنا",
+        brokenfigureneeded = "تحتاج إلى %{count} شخصية مكسورة",
+        tookmetharrayfirst = "تحتاج إلى أخذ مصفوفة الميث أولاً",
+    },
+    success = {
+        putingrediants = "قمت بإضافة المكونات بنجاح",
+        Packagecoke = "لقد قمت بتعبئة الكوكايين بنجاح",
+        procurecoke = "لقد نجحت في الحصول على الكوكايين بنجاح",
+        Pouringcoke = "لقد صبت الكوكايين بنجاح",
+        changecolthesback = "حان الوقت للمغادرة!",
+        changelabclothes = "لقد قمت بتغيير ملابسك! لنبدأ العمل",
+        machinestarted = "بدأ الجهاز",
+        emptymixer = "لقد قمت بتفريغ المحضر",
+        takemetharray = "عمل جيد",
+        addMethArray = "عمل جيد",
+        hammerMethArray = "أنت تتقدم بشكل جيد حتى الآن!",
+        packagereceive = "لقد حصلت على ميث الخاص بك!",
+    },
+    progressbar = {
+        repairfigurine = "ناقش مع الموظف لإصلاح التمثال",
+        changeclothes = "تغيير الملابس",
+        setuptemp = "ضبط درجة الحرارة",
+        emptymixer = "تفريغ المحضر",
+        takemetharray = "أخذ مصفوفة الميث",
+        addmetharray = "إضافة مصفوفة الميث",
+    },
+    label = {
+        enterlab = "ادخل المعمل",
+        leavelab = "اترك المعمل",
+        changepasscode = "تغيير كلمة المرور",
+        repairfigurine = "إصلاح التمثال",
+        puringcoke = "صب الكوكايين",
+        packagecoke = "تعبئة الكوكايين",
+        procurecoke = "احصل على الكوكايين",
+        Pouringcoke = "صب الكوكايين في الصندوق",
+        breakfigure = "كسر التمثال"
+    },
+    menu = {
+        enterlabheader = "ادخل المعمل",
+        enterlabtext = "",
+        raidlockheader = "قفل الغارة",
+        raidlocktext = "",
+        exitHeader = "الخروج",
+        ingrediantsleftHeader = "المكونات المتبقية",
+        metharrayleftheader = "مصفوفات الميث داخل الجهاز",
+    }
+}
+
+Lang = Lang or Locale:new({
+    phrases = Translations,
+    warnOnMissing = true
+})

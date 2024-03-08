@@ -11,15 +11,13 @@ shared_scripts {
 client_scripts {
     'client/main.lua',
     'client/meth.lua',
-    'client/coke.lua',
-    'client/weed.lua'
+    'client/coke.lua'
 }
 server_scripts {
 	'@oxmysql/lib/MySQL.lua',
     'server/main.lua',
     'server/meth.lua',
-    'server/coke.lua',
-    'server/weed.lua'
+    'server/coke.lua'
 }
 ui_page 'ui/index.html'
 files {
