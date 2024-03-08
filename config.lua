@@ -232,6 +232,16 @@ Config.meth = {
 
 Config.coke = {
     locations = {
+        dryingleaf = {
+            coords = vector3(0.81, 0.72, 0.99),
+            options = {
+                [1] = {
+                    event = "tn-labs:cl:coke:dryingleaf",
+                    icon = 'fa-solid fa-bolt',
+                    label = "drying leaf",
+                },
+            }
+        },
         processleaf = {
             coords = vector3(1101.81, -3193.72, -38.99),
             options = {

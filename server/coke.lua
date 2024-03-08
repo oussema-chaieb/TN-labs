@@ -4,6 +4,9 @@ RegisterNetEvent("tn-labs:sv:coke:removeandgiveitems",function(ings, rewards)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     for ingredient, quantity in pairs(ings) do
+        if not (Player.Functions.GetItemByName(ingredient) and Player.Functions.GetItemByName(ingredient).amount >= quantity) then 
+            return TriggerClientEvent('QBCore:Notify', src, Lang:t('error.missingingrediants'), 'error')
+        end
         Player.Functions.RemoveItem(ingredient, quantity)
         TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[ingredient], "remove", quantity)
     end
