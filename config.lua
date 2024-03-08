@@ -344,4 +344,6 @@ Config.coke = {
         },
     },
     Reward = 10,
+    brokencokefigurecount = 4 , -- how many broken coke figures are needed to make a repaired figure
+    cokeparcokefigure = 4, -- how many coke given when broking a coke figure
 }

@@ -281,16 +281,16 @@ RegisterNetEvent('tn-labs:cl:meth:mixing', function()
                 TriggerEvent('animations:client:EmoteCommandStart', {"c"})
                 TriggerServerEvent("tn-labs:sv:meth:removeMixageIngrediants")
                 startMixingMethAnimation()
-                QBCore.Functions.Notify("You successfly put the ingrediants", "success")
+                QBCore.Functions.Notify(Lang:t('success.putingrediants'), "success")
             else
                 TriggerEvent('animations:client:EmoteCommandStart', {"c"})
-                QBCore.Functions.Notify("you failed", "error")
+                QBCore.Functions.Notify(Lang:t('error.failure'), "error")
             end
         else
-            QBCore.Functions.Notify("You are missing something", "error")
+            QBCore.Functions.Notify(Lang:t('error.missingingrediants'), "error")
         end
     else
-        QBCore.Functions.Notify("Mixeur is full", "error")
+        QBCore.Functions.Notify(Lang:t('error.mixeurfull'), "error")
     end
     if not isWearingClothes then
         MethEffect()
@@ -301,13 +301,13 @@ RegisterNetEvent('tn-labs:cl:meth:checkMixageIngrediants', function()
     local status = checkLabIngrediants()
     local LabMenu = {
         {
-            header = "Ingrediants left",
+            header = Lang:t('menu.ingrediantsleftHeader'),
             txt = status,
             isMenuHeader = true
         }
     }
     LabMenu[#LabMenu + 1] = {
-        header = "exit",
+        header = Lang:t('menu.exitHeader'),
         params = {
             event = "qb-menu:closeMenu"
         }
@@ -329,9 +329,9 @@ RegisterNetEvent('tn-labs:cl:meth:usemachine', function()
     local status = checkLabIngrediants()
     local time = checkWaitTime()
     local quality = checkLabQuality()
-    print(status)
-    print(time)
-    print(quality)
+    --print(status)
+    --print(time)
+    --print(quality)
     if time < 1 then
         if quality == 0 then
             if status == 1 then
@@ -340,13 +340,13 @@ RegisterNetEvent('tn-labs:cl:meth:usemachine', function()
                 })
                 SetNuiFocus(true, true)
             else
-                QBCore.Functions.Notify("You need to put the ingrediants first", "error")
+                QBCore.Functions.Notify(Lang:t('error.putingrediantsfirst'), "error")
             end
         else
-            QBCore.Functions.Notify("You need to empty the mixer first", "error")
+            QBCore.Functions.Notify(Lang:t('error.emptymixerfirst'), "error")
         end
     else
-        QBCore.Functions.Notify("The Machine Is allready working", "error")
+        QBCore.Functions.Notify(Lang:t('error.machineisworking'), "error")
     end
 end)
 
@@ -358,7 +358,7 @@ RegisterNUICallback('startProcess', function(data, cb)
     SetNuiFocus(false, false)
     FreezeEntityPosition(PlayerPedId(), true)
     TriggerEvent('animations:client:EmoteCommandStart', {"notepad2"})
-    QBCore.Functions.Progressbar("machinemeth", "setup temperature", 30 * 1000, false, false, {
+    QBCore.Functions.Progressbar("machinemeth", Lang:t('progressbar.setuptemp'), 30 * 1000, false, false, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -368,10 +368,10 @@ RegisterNUICallback('startProcess', function(data, cb)
         local resultQuality = calculateQuality(data.ingredient1, data.ingredient2, data.ingredient3, data.ingredient4)
         print("Quality:", resultQuality)
         TriggerServerEvent("tn-labs:sv:meth:processStarted",resultQuality)
-        QBCore.Functions.Notify("the machine has started", "success")
+        QBCore.Functions.Notify(Lang:t('success.machinestarted'), "success")
         FreezeEntityPosition(PlayerPedId(), false)
     end, function() -- Cancel
-        QBCore.Functions.Notify("you cancel !!", "error")
+        QBCore.Functions.Notify(Lang:t('error.cancel'), "error")
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         FreezeEntityPosition(PlayerPedId(), false)
     end)
@@ -383,10 +383,10 @@ RegisterNetEvent('tn-labs:cl:meth:passToMethArray', function()
     local passmetharraycanp = checkMethArrayCanPass()
     local metharrayamount = Config.meth.methArrayReward
     if time < 1 and quality > 0 then
-        if not passmetharraycanp then return QBCore.Functions.Notify("you need to empty the meth and package them first", "error") end
+        if not passmetharraycanp then return QBCore.Functions.Notify(Lang:t('error.couldntpassmetharray'), "error") end
         FreezeEntityPosition(PlayerPedId(), true)
         TriggerEvent('animations:client:EmoteCommandStart', {"notepad2"})
-        QBCore.Functions.Progressbar("passToMethArray", "empty the mixer", 30 * 1000, false, false, {
+        QBCore.Functions.Progressbar("passToMethArray", Lang:t('progressbar.emptymixer'), 30 * 1000, false, false, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
@@ -394,15 +394,15 @@ RegisterNetEvent('tn-labs:cl:meth:passToMethArray', function()
         }, {}, {}, {}, function() -- Done
             TriggerEvent('animations:client:EmoteCommandStart', {"c"})
             TriggerServerEvent("tn-labs:sv:meth:passToMethArray", metharrayamount)
-            QBCore.Functions.Notify("you empty the mixer", "success")
+            QBCore.Functions.Notify(Lang:t('success.emptymixer'), "success")
             FreezeEntityPosition(PlayerPedId(), false)
         end, function() -- Cancel
-            QBCore.Functions.Notify("you cancel !!", "error")
+            QBCore.Functions.Notify(Lang:t('error.cancel'), "error")
             TriggerEvent('animations:client:EmoteCommandStart', {"c"})
             FreezeEntityPosition(PlayerPedId(), false)
         end)
     else
-        QBCore.Functions.Notify("machine is still working !!", "error")
+        QBCore.Functions.Notify(Lang:t('error.machinestillworking'), "error")
     end
 end)
 
@@ -410,13 +410,13 @@ RegisterNetEvent('tn-labs:cl:meth:CheckArraysCount', function()
     local amount = checkMethArrayAmount()
     local LabMenu = {
         {
-            header = "Meth Arrays inside The Machine",
+            header = Lang:t('menu.metharrayleftheader'),
             txt = amount,
             isMenuHeader = true
         }
     }
     LabMenu[#LabMenu + 1] = {
-        header = "exit",
+        header = Lang:t('menu.exitHeader'),
         params = {
             event = "qb-menu:closeMenu"
         }
@@ -429,7 +429,7 @@ RegisterNetEvent('tn-labs:cl:meth:tookMethArray', function()
     if amount > 0 then
         FreezeEntityPosition(PlayerPedId(), true)
         TriggerEvent('animations:client:EmoteCommandStart', {"mechanic"})
-        QBCore.Functions.Progressbar("tookMethArray", "Took Meth Array", 5 * 1000, false, false, {
+        QBCore.Functions.Progressbar("tookMethArray", Lang:t('progressbar.takemetharray'), 5 * 1000, false, false, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
@@ -438,15 +438,15 @@ RegisterNetEvent('tn-labs:cl:meth:tookMethArray', function()
             TriggerEvent('animations:client:EmoteCommandStart', {"c"})
             TriggerServerEvent("tn-labs:sv:meth:tookMethArray")
             SpawnItem('bkr_prop_meth_tray_02a',-0.08, 0.65, 0.1, 0.0, 0.0, 180.0)
-            QBCore.Functions.Notify("Good Job", "success")
+            QBCore.Functions.Notify(Lang:t('success.takemetharray'), "success")
             FreezeEntityPosition(PlayerPedId(), false)
         end, function() -- Cancel
-            QBCore.Functions.Notify("you cancel !!", "error")
+            QBCore.Functions.Notify(Lang:t('error.cancel'), "error")
             TriggerEvent('animations:client:EmoteCommandStart', {"c"})
             FreezeEntityPosition(PlayerPedId(), false)
         end)
     else
-        QBCore.Functions.Notify("There is no meth array to take !!", "error")
+        QBCore.Functions.Notify(Lang:t('error.nometharraytotake'), "error")
     end
     local isWearingClothes = checkPedClothes()
     if not isWearingClothes then
@@ -463,7 +463,7 @@ RegisterNetEvent('tn-labs:cl:meth:toAddMethArray', function()
     ClearPedTasks(PlayerPedId())
     FreezeEntityPosition(PlayerPedId(), true)
     TriggerEvent('animations:client:EmoteCommandStart', {"mechanic"})
-    QBCore.Functions.Progressbar("addMethArray", "Add Meth Array", 5 * 1000, false, false, {
+    QBCore.Functions.Progressbar("addMethArray", Lang:t('progressbar.addmetharray'), 5 * 1000, false, false, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -471,10 +471,10 @@ RegisterNetEvent('tn-labs:cl:meth:toAddMethArray', function()
     }, {}, {}, {}, function() -- Done
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         TriggerServerEvent("tn-labs:sv:meth:addMethArray")
-        QBCore.Functions.Notify("Good Job", "success")
+        QBCore.Functions.Notify(Lang:t('success.addMethArray'), "success")
         FreezeEntityPosition(PlayerPedId(), false)
     end, function() -- Cancel
-        QBCore.Functions.Notify("you cancel !!", "error")
+        QBCore.Functions.Notify(Lang:t('error.cancel'), "error")
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         FreezeEntityPosition(PlayerPedId(), false)
     end)
@@ -484,13 +484,13 @@ RegisterNetEvent('tn-labs:cl:meth:CheckArraysCounttwo', function()
    local amount = checkMethArrayAmountTwo()
    local LabMenu = {
         {
-            header = "Meth Arrays inside The Machine",
+            header = Lang:t('menu.metharrayleftheader'),
             txt = amount,
             isMenuHeader = true
         }
     }
     LabMenu[#LabMenu + 1] = {
-        header = "exit",
+        header = Lang:t('menu.exitHeader'),
         params = {
             event = "qb-menu:closeMenu"
         }
@@ -555,14 +555,14 @@ end
 
 RegisterNetEvent('tn-labs:cl:meth:hammerMethArray', function()
     local amount = checkMethArrayAmountTwo()
-    if hummerani then return QBCore.Functions.Notify("Nonnnn", "error") end
+    if hummerani then return QBCore.Functions.Notify(Lang:t('error.middleofprocess'), "error") end
     if amount > 0 then
         hummerani = true
         hummeranimation()
         TriggerServerEvent("tn-labs:sv:meth:passMethArrayToStageTwo")
-        QBCore.Functions.Notify("You are doing well so far !", "success")
+        QBCore.Functions.Notify(Lang:t('success.hammerMethArray'), "success")
     else
-        QBCore.Functions.Notify("No Arrays here", "error")
+        QBCore.Functions.Notify(Lang:t('error.noarrays'), "error")
     end
     local isWearingClothes = checkPedClothes()
     if not isWearingClothes then
@@ -684,14 +684,14 @@ end
 
 RegisterNetEvent('tn-labs:cl:meth:package', function()
     local amount = checkMethArrayAmountThree()
-    if addmetharrayani then return QBCore.Functions.Notify("Nonnnn", "error") end
+    if addmetharrayani then return QBCore.Functions.Notify(Lang:t('error.middleofprocess'), "error") end
     if amount > 0 then
         addmetharrayani = true
         PackageMethAnim()
         TriggerServerEvent("tn-labs:sv:meth:package")
-        QBCore.Functions.Notify("You got your meth !", "success")
+        QBCore.Functions.Notify(Lang:t('success.packagereceive'), "success")
     else
-        QBCore.Functions.Notify("No Arrays here", "error")
+        QBCore.Functions.Notify(Lang:t('error.noarrays'), "error")
     end
     local isWearingClothes = checkPedClothes()
     if not isWearingClothes then
@@ -709,7 +709,7 @@ end)
 
 RegisterNetEvent('tn-labs:cl:meth:clothes', function()
     ChangeClothesAnim()
-    QBCore.Functions.Progressbar('changeparachute', "Changing Clothes", 5000, false, true, {
+    QBCore.Functions.Progressbar('changeparachute', Lang:t('progressbar.changeclothes'), 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
         disableMouse = false,
@@ -718,11 +718,11 @@ RegisterNetEvent('tn-labs:cl:meth:clothes', function()
         if haschangedclothes then
             TriggerEvent("illenium-appearance:client:reloadSkin")
             haschangedclothes = false
-            QBCore.Functions.Notify("Time to leave !", "success")
+            QBCore.Functions.Notify(Lang:t('success.changecolthesback'), "success")
         else
             ApplyServicerSkin()
             haschangedclothes = true
-            QBCore.Functions.Notify("you changed your clothes ! let's start working", "success")
+            QBCore.Functions.Notify(Lang:t('success.changelabclothes'), "success")
         end
         TaskPlayAnim(ped, 'clothingshirt', 'exit', 8.0, 1.0, -1, 49, 0, false, false, false)
     end)

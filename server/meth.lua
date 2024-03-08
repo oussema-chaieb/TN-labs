@@ -36,7 +36,7 @@ RegisterNetEvent("tn-labs:sv:meth:toAddMethArray",function()
     if metharraytoken > 0 then
         TriggerClientEvent('tn-labs:cl:meth:toAddMethArray', source)
     else
-        TriggerClientEvent('QBCore:Notify', source, 'You need to took the meth array first', 'error')
+        TriggerClientEvent('QBCore:Notify', source, Lang:t('error.tookmetharrayfirst'), 'error')
     end
 end)
 

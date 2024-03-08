@@ -177,7 +177,7 @@ CreateThread(function()
             options = {
                 {
                     icon = 'fa-solid fa-bolt',
-                    label = 'Enter lab',
+                    label = Lang:t('label.enterlab'),
                     action = function()
                         TriggerEvent("tn-labs:cl:interactEnter",v)
                     end,
@@ -198,14 +198,14 @@ CreateThread(function()
             options = {
                 {
                     icon = 'fa-solid fa-bolt',
-                    label = 'Leave lab',
+                    label = Lang:t('label.leavelab'),
                     action = function()
                         Leavelab(v.outside, v.labname)
                     end,
                 },
                 {
                     icon = "fas fa-cut", 
-                    label = "Change Passcode",
+                    label = Lang:t('label.changepasscode'),
                     canInteract = function()
                         if v.Security == "password" then return true else return false end
                     end,
@@ -228,8 +228,8 @@ RegisterNetEvent("tn-labs:cl:interactEnter", function(data)
         }
     }
     LabMenu[#LabMenu + 1] = {
-        header = "enter to lab",
-        txt = "",
+        header = Lang:t('menu.enterlabheader'),
+        txt = Lang:t('menu.enterlabtext'),
         params = {
             event = "tn-labs:cl:enterAttempt",
             args = {
@@ -238,8 +238,8 @@ RegisterNetEvent("tn-labs:cl:interactEnter", function(data)
         }
     }
     LabMenu[#LabMenu + 1] = {
-        header = "Raid Lock",
-        txt = "",
+        header = Lang:t('menu.raidlockheader'),
+        txt = Lang:t('menu.raidlocktext'),
         params = {
             event = "tn-labs:cl:raidLocker",
             args = {
@@ -248,7 +248,7 @@ RegisterNetEvent("tn-labs:cl:interactEnter", function(data)
         }
     }
     LabMenu[#LabMenu + 1] = {
-        header = "exit",
+        header = Lang:t('menu.exitHeader'),
         params = {
             event = "qb-menu:closeMenu"
         }
@@ -263,10 +263,10 @@ RegisterNetEvent('tn-labs:cl:raidLocker', function(data)
             -- TODO animation and progressbar
             Enterlab(data.data.inside)
         else
-            QBCore.Functions.Notify("You don't have a Stormram on you..", "error")
+            QBCore.Functions.Notify(Lang:t('error.missingstormram'), "error")
         end
     else
-        QBCore.Functions.Notify("You are not a police", "error")
+        QBCore.Functions.Notify(Lang:t('error.notpolice'), "error")
     end
 end)
 
@@ -284,7 +284,7 @@ RegisterNetEvent('tn-labs:cl:enterAttempt', function(data)
                     PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
                     Enterlab(data.data.inside)
                 else
-                    QBCore.Functions.Notify("Incorrect Password", 'error')
+                    QBCore.Functions.Notify(Lang:t('error.incorrectpassword'), 'error')
                 end  
             end
         end, data.data.labname) 
@@ -301,25 +301,25 @@ RegisterNetEvent('tn-labs:cl:enterAttempt', function(data)
         if hasItem then
             Enterlab(data.data.inside)
         else
-            QBCore.Functions.Notify("You are missing the key", "error")
+            QBCore.Functions.Notify(Lang:t('error.missingkey'), "error")
         end
     elseif data.data.Security == "citizenid" then
         if data.data.citizenid[QBCore.Functions.GetPlayerData().citizenid] then
             Enterlab(data.data.inside)
         else
-            QBCore.Functions.Notify("You are not authorized", "error")
+            QBCore.Functions.Notify(Lang:t('error.notauthorized'), "error")
         end
     elseif data.data.Security == "gang" then
         if data.data.gang[QBCore.Functions.GetPlayerData().gang.name] and QBCore.Functions.GetPlayerData().gang.grade.level >= data.data.gang[QBCore.Functions.GetPlayerData().gang.name] then
             Enterlab(data.data.inside)
         else
-            QBCore.Functions.Notify("You are not authorized", "error")
+            QBCore.Functions.Notify(Lang:t('error.notauthorized'), "error")
         end
     elseif data.data.Security == "job" then
         if data.data.job[QBCore.Functions.GetPlayerData().job.name] and QBCore.Functions.GetPlayerData().job.grade.level >= data.data.job[QBCore.Functions.GetPlayerData().job.name] then
             Enterlab(data.data.inside)
         else
-            QBCore.Functions.Notify("You are not authorized", "error")
+            QBCore.Functions.Notify(Lang:t('error.notauthorized'), "error")
         end
     end
 end)

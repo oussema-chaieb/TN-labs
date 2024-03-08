@@ -24,19 +24,19 @@ RegisterNetEvent('tn-labs:sv:coke:breakingcokefigure', function()
     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['coke_figure'], "remove")
     Player.Functions.AddItem('coke_figurebroken', 1)
     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['coke_figurebroken'], "add")
-    Player.Functions.AddItem('coke_pure', 4)
-    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['coke_pure'], "add", 4)
+    Player.Functions.AddItem('coke_pure', Config.coke.cokeparcokefigure)
+    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['coke_pure'], "add", Config.coke.cokeparcokefigure)
 end)
 
 RegisterNetEvent('tn-labs:sv:coke:repairfigurines', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src) 
-    if Player.Functions.RemoveItem('coke_figurebroken', 4) then
+    if Player.Functions.RemoveItem('coke_figurebroken', Config.coke.brokencokefigurecount) then
         Player.Functions.AddItem('coke_figure', 1)
         TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['coke_figure'], "add")
-        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['coke_figurebroken'], "remove", 4)
+        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['coke_figurebroken'], "remove", Config.coke.brokencokefigurecount)
     else
-        TriggerClientEvent('QBCore:Notify', src, 'You need 4 broken figure', 'error')
+        TriggerClientEvent('QBCore:Notify', src, Lang:t('error.brokenfigureneeded', {count = Config.coke.brokencokefigurecount}), 'error')
     end
 end)
 

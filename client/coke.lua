@@ -10,7 +10,6 @@ CreateThread(function()
     for k, v in pairs(Config.coke.locations) do
         local options = {}
         for _, option in pairs(v.options) do
-           -- print(option.label)
             options[#options + 1] = {
                 event = option.event,
                 icon = option.icon,
@@ -33,7 +32,7 @@ end)
 
 local function repairfigurine()
     TriggerEvent('animations:client:EmoteCommandStart', {"argue"})
-    QBCore.Functions.Progressbar('repairfugurine', "Argue with employee to repair figurine", 5000, false, true, {
+    QBCore.Functions.Progressbar('repairfugurine', Lang:t('progressbar.repairfigurine'), 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
         disableMouse = false,
@@ -60,7 +59,7 @@ CreateThread(function()
     exports['qb-target']:AddTargetEntity(ped, {
         options = {
             {
-                label = "repair figurine",
+                label = Lang:t('label.repairfigurine'),
                 icon = "fa-solid fa-warehouse",
                 action = function()
                     repairfigurine()
@@ -169,7 +168,7 @@ local function processAnim()
     end
     if lib.progressBar({
         duration = animDuration-3500,
-        label = 'Puring coke',
+        label = Lang:t('label.puringcoke'),
         useWhileDead = false,
         canCancel = false,
         disable = {
@@ -180,10 +179,9 @@ local function processAnim()
         },
     }) then
         FreezeEntityPosition(ped, false)
-        QBCore.Functions.Notify("You successfly put the ingrediants", "success")
+        QBCore.Functions.Notify(Lang:t('success.putingrediants'), "success")
         TriggerServerEvent("tn-labs:sv:coke:removeandgiveitems", Config.coke.processIngrediants, Config.coke.processRewards)
     end
-    -- Citizen.Wait(animDuration-11000)
     Citizen.Wait(animDuration-3500)
     for i=1, #scenesList, 1 do
         NetworkStopSynchronisedScene(scenesList[i])
@@ -295,7 +293,7 @@ local function packageCoke()
     end
     if lib.progressBar({
         duration = 45000,
-        label = 'Puring coke',
+        label = Lang:t('label.packagecoke'),
         useWhileDead = false,
         canCancel = false,
         disable = {
@@ -305,7 +303,7 @@ local function packageCoke()
             mouse = false,
         },
     }) then
-        QBCore.Functions.Notify("You successfly put the ingrediants", "success")
+        QBCore.Functions.Notify(Lang:t('success.Packagecoke'), "success")
         TriggerServerEvent("tn-labs:sv:coke:removeandgiveitems",Config.coke.packageIngrediants ,Config.coke.packageRewards)
     end
     for i=1, #scenesList, 1 do
@@ -354,7 +352,7 @@ local function unpackageanim()
     SetEntityVisible(CokeScoop, false, 0)
     if lib.progressBar({
         duration = 43828,
-        label = "procuring coke",
+        label = Lang:t('label.procurecoke'),
         useWhileDead = false,
         canCancel = false,
         disable = {
@@ -368,7 +366,7 @@ local function unpackageanim()
         DeleteObject(CokeBox)
         DeleteObject(CokeScoop)
         FreezeEntityPosition(ped, false)
-        QBCore.Functions.Notify("You successfly put the ingrediants", "success")
+        QBCore.Functions.Notify(Lang:t('success.procurecoke'), "success")
         TriggerServerEvent("tn-labs:sv:coke:removeandgiveitems", Config.coke.unpackageIngrediants, Config.coke.unpackageRewards)
     end
     unpackageanimation = false
@@ -387,7 +385,7 @@ local function intoboxanim()
     Wait(2000)
     if lib.progressBar({
         duration = 10000,
-        label = "Pouring Coke into the box",
+        label = Lang:t('label.Pouringcoke'),
         useWhileDead = false,
         canCancel = false,
         disable = {
@@ -408,7 +406,7 @@ local function intoboxanim()
             bone = 18905
         },
     }) then
-        QBCore.Functions.Notify("You successfly put the ingrediants", "success")
+        QBCore.Functions.Notify(Lang:t('success.Pouringcoke'), "success")
         TriggerServerEvent("tn-labs:sv:coke:removeandgiveitems",Config.coke.processleafIngrediants, Config.coke.processleafRewards)
         DeleteObject(object)
     else
@@ -419,62 +417,62 @@ local function intoboxanim()
 end
 
 RegisterNetEvent('tn-labs:cl:coke:leafproc', function()
-    if procleaf then return QBCore.Functions.Notify("Nonnnn", "error") end
+    if procleaf then return QBCore.Functions.Notify(Lang:t('error.middleofprocess'), "error") end
     local hasIngredients = hasRequiredIngredients(Config.coke.processleafIngrediants)
     if hasIngredients then
         if HackUi(Config.meth.mixingHackUi, Config.meth.mixingHackUiType) then
             procleaf = true
             intoboxanim()
         else
-            QBCore.Functions.Notify("you failed", "error")
+            QBCore.Functions.Notify(Lang:t('error.failure'), "error")
         end
     else
-        QBCore.Functions.Notify("You are missing something", "error")
+        QBCore.Functions.Notify(Lang:t('error.missingingrediants'), "error")
     end
 end)
 
 RegisterNetEvent('tn-labs:cl:coke:unpackage', function()
-    if unpackageanimation then return QBCore.Functions.Notify("Nonnnn", "error") end
+    if unpackageanimation then return QBCore.Functions.Notify(Lang:t('error.middleofprocess'), "error") end
     local hasIngredients = hasRequiredIngredients(Config.coke.unpackageIngrediants)
     if hasIngredients then
         if HackUi(Config.meth.mixingHackUi, Config.meth.mixingHackUiType) then
             unpackageanimation = true
             unpackageanim()
         else
-            QBCore.Functions.Notify("you failed", "error")
+            QBCore.Functions.Notify(Lang:t('error.failure'), "error")
         end
     else
-        QBCore.Functions.Notify("You are missing something", "error")
+        QBCore.Functions.Notify(Lang:t('error.missingingrediants'), "error")
     end
 end)
 
 RegisterNetEvent('tn-labs:cl:coke:process', function()
-    if procanim then return QBCore.Functions.Notify("Nonnnn", "error") end
+    if procanim then return QBCore.Functions.Notify(Lang:t('error.middleofprocess'), "error") end
     local hasIngredients = hasRequiredIngredients(Config.coke.processIngrediants)
     if hasIngredients then
         if HackUi(Config.meth.mixingHackUi, Config.meth.mixingHackUiType) then
             procanim = true
             processAnim()
         else
-            QBCore.Functions.Notify("you failed", "error")
+            QBCore.Functions.Notify(Lang:t('error.failure'), "error")
         end
     else
-        QBCore.Functions.Notify("You are missing something", "error")
+        QBCore.Functions.Notify(Lang:t('error.missingingrediants'), "error")
     end
 end)
 
 RegisterNetEvent('tn-labs:cl:coke:package', function()
-    if packageanim then return QBCore.Functions.Notify("Nonnnn", "error") end
+    if packageanim then return QBCore.Functions.Notify(Lang:t('error.middleofprocess'), "error") end
     local hasIngredients = hasRequiredIngredients(Config.coke.packageIngrediants)
     if hasIngredients then
         if HackUi(Config.meth.mixingHackUi, Config.meth.mixingHackUiType) then
             packageanim = true
             packageCoke()
         else
-            QBCore.Functions.Notify("you failed", "error")
+            QBCore.Functions.Notify(Lang:t('error.failure'), "error")
         end
     else
-        QBCore.Functions.Notify("You are missing something", "error")
+        QBCore.Functions.Notify(Lang:t('error.missingingrediants'), "error")
     end
 end)
 
@@ -488,7 +486,7 @@ end)
 
 RegisterNetEvent('tn-labs:cl:coke:clothes', function()
     ChangeClothesAnim()
-    QBCore.Functions.Progressbar('changecokelabclothes', "Changing Clothes", 5000, false, true, {
+    QBCore.Functions.Progressbar('changecokelabclothes', Lang:t('progressbar.changeclothes'), 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
         disableMouse = false,
@@ -497,11 +495,11 @@ RegisterNetEvent('tn-labs:cl:coke:clothes', function()
         if haschangedclothes then
             TriggerEvent("illenium-appearance:client:reloadSkin")
             haschangedclothes = false
-            QBCore.Functions.Notify("Time to leave !", "success")
+            QBCore.Functions.Notify(Lang:t('success.changecolthesback'), "success")
         else
             ApplyServicerSkin()
             haschangedclothes = true
-            QBCore.Functions.Notify("you changed your clothes ! let's start working", "success")
+            QBCore.Functions.Notify(Lang:t('success.changelabclothes'), "success")
         end
         TaskPlayAnim(ped, 'clothingshirt', 'exit', 8.0, 1.0, -1, 49, 0, false, false, false)
     end)
@@ -511,7 +509,7 @@ end)
 RegisterNetEvent("tn-labs:cl:coke:usefigure", function()
     if lib.progressBar({
         duration = 6000,
-        label = "Breaking figure",
+        label = Lang:t('label.breakfigure'),
         useWhileDead = false,
         canCancel = false,
         disable = {
