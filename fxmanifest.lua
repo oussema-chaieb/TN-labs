@@ -10,20 +10,20 @@ shared_scripts {
     'locales/*.lua'
 }
 client_scripts {
-    'client/main.lua',
-    'client/meth.lua',
-    'client/coke.lua'
+    '@PolyZone/client.lua',
+    '@PolyZone/CircleZone.lua',
+    'client/*.lua'
 }
 server_scripts {
 	'@oxmysql/lib/MySQL.lua',
-    'server/main.lua',
-    'server/meth.lua',
-    'server/coke.lua'
+    'server/*.lua'
 }
 ui_page 'ui/index.html'
 files {
     'ui/app.js',
     'ui/index.html',
-    'ui/style.css'
+    'ui/style.css',
+    'stream/mw_props.ytyp'
 }
+data_file 'DLC_ITYP_REQUEST' 'stream/mw_props.ytyp'
 lua54 'yes'

@@ -376,3 +376,50 @@ function checkPedClothes()
         GetPedPropTextureIndex(PlayerPedId(), 0) == config.hat.texture
     )
 end
+
+CreateThread(function()
+    exports['qb-target']:AddTargetModel("h4_prop_bush_cocaplant_01", {
+        options = {
+            {
+                type = "client",
+                event = "tn-labs:pickCocaLeaves",
+                icon = "fas fa-leaf",
+                label = "target.pickCocaLeaves",
+            },
+        },
+        distance = 4.0
+    })
+    exports['qb-target']:AddTargetModel("prop_plant_01b", {
+        options = {
+            {
+                type = "client",
+                event = "tn-labs:pickHeroin",
+                icon = "fas fa-leaf",
+                label = "target.pickHeroin",
+            },
+        },
+        distance = 4.0
+    })
+    exports['qb-target']:AddTargetModel("mw_chemical_barrel", {
+        options = {
+            {
+                type = "client",
+                event = "tn-labs:pickSulfuric",
+                icon = "fas fa-shield-virus",
+                label = "target.pickSulfuric",
+            },
+        },
+        distance = 4.0
+    })
+    exports['qb-target']:AddTargetModel("mw_hydro_barrel", {
+        options = {
+            {
+                type = "client",
+                event = "tn-labs:client:hydrochloricacid",
+                icon = "fas fa-radiation",
+                label = "target.hydrochloricacid",
+            },
+        },
+        distance = 4.0
+    })
+end)

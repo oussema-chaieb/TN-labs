@@ -330,3 +330,11 @@ Config.coke = {
     brokencokefigurecount = 4 , -- how many broken coke figures are needed to make a repaired figure
     cokeparcokefigure = 4, -- how many coke given when broking a coke figure
 }
+
+Config.UseTNAddiction = false
+
+Config.CircleZones = {
+	HydrochloricAcidFarm = {coords = vector3(-1069.25, 4945.57, 212.18), name = ('Hydrochloric Acid'), radius = 100.0},
+	SulfuricAcidFarm = {coords = vector3(3483.9, 2581.83, 14.33), name = ('Sulfuric Acid'), radius = 100.0},
+	CokeField = {coords = vector3(2806.5, 4774.46, 46.98), name = ('Coke'), radius = 100.0},
+}

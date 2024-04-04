@@ -8,6 +8,14 @@
     coke_figurebroken 			 = {name = "coke_figurebroken", 			label = "Pieces of Action Figure", 	weight = 100, 		type = "item", 		image = "coke_figurebroken.png", 	unique = false, 	useable = true, 	shouldClose = false,   combinable = nil, description = "You can throw this away or try to repair with glue"},
     empty_syringe 			     = {name = "empty_syringe", 			    label = "Empty Syringe", 	        weight = 100, 		type = "item", 		image = "syringe.png", 	unique = false, 	useable = false, 	shouldClose = false,   combinable = nil, description = ""},
     baking_soda 			     = {name = "baking_soda", 				    label = "Baking Soda", 			    weight = 30, 		type = "item", 		image = "baking_soda.png", 			unique = false, 	useable = false, 	shouldClose = false,   combinable = nil, description = "Baking Bad!"},
+    methamine                    = { name = "methamine",                    label = "Methamine",                weight = 200,      type = "item",      image = "meth_baggy.png", unique = false, useable = true, shouldClose = false, combinable = nil, description = "Incroyable stuff" },
+    trowel                       = { name = "trowel",                       label = "trowel",                    weight = 1000,      type = "item",      image = "trowel.png", unique = false, useable = false, shouldClose = false, combinable = nil, description = "trowel" },
     	-- if using lab keys
 	methkey = { name = "methkey", label = "Meth Keys", weight = 100, type = "item", image = "meth_access.png", unique = false, useable = false, shouldClose = false, combinable = nil, description = "" },
     cokekey = { name = "cokekey", label = "Coke Keys", weight = 100, type = "item", image = "coke_access.png", unique = false, useable = false, shouldClose = false, combinable = nil, description = "" },
+
+    sodium_mask = { name = "sodium_mask", label = "Mask Green", weight = 350, type = "item", image = "sodium_mask.png", unique = false, useable = true, shouldClose = true, combinable = nil, description = '' },
+    sulfuric_mask = { name = "sulfuric_mask", label = "Mask Red", weight = 350, type = "item", image = "sulfuric_mask.png", unique = false, useable = true, shouldClose = true, combinable = nil, description = '' },
+
+    sodium_hydroxide = { name = "sodium_hydroxide", label = "Sodium Hydroxide", weight = 1500, type = "item", image = "meth_amoniak.png", unique = false, useable = true, shouldClose = true, combinable = nil, expire = 90, description = "Chemicals, handle with care!" },
+    sulfuric_acid = { name = "sulfuric_acid", label = "Sulfuric Acid", weight = 1500, type = "item", image = "meht_sacid.png", unique = false, useable = false, shouldClose = false, combinable = nil, expire = 90, description = "Chemicals, handle with care!" },
