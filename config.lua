@@ -233,7 +233,7 @@ Config.meth = {
 Config.coke = {
     locations = {
         dryingleaf = {
-            coords = vector3(0.81, 0.72, 0.99),
+            coords = vector3(1094.62, -3192.92, -38.99),
             options = {
                 [1] = {
                     event = "tn-labs:cl:coke:dryingleaf",
@@ -297,62 +297,35 @@ Config.coke = {
                 }
             }
         },
-    },  
+    },
+    dryitem = "coke_leaf",  
     processleafIngrediants = {
-        ["coca_leaf"] = 4
+        ["coke_leaf"] = 4 -- only one item !! don't add more
     },
     processleafRewards = {
         ["coke_box"] = 1
     },
-
     unpackageIngrediants = {
-        ["coke_box"] = 2
+        ["coke_box"] = 1 -- only one item !! don't add more
     },
     unpackageRewards = {
         ["coke_raw"] = 4
     },
-
-
-
-    processIngrediants = {
-        ["coke_raw"] = 6,
+    processIngrediants = { -- first item has quality and need to be in stash and others in player inventory
+        ["coke_raw"] = 4, 
         ["baking_soda"] = 1
     },
     processRewards = {
-        ["coke_pure"] = 1
+        ["coke_pure"] = 1 -- only one item !! don't add more
     },
-
-
-    packageIngrediants = {
-        ["coke_figureempty"] = 1,
+    packageIngrediants = { -- first item has quality and need to be in stash and others in player inventory
         ["coke_pure"] = 4,
+        ["coke_figureempty"] = 1
     },
     packageRewards = {
-        ["coke_figure"] = 1
+        ["coke_figure"] = 1 -- only one item !! don't add more
     },
-    Outfits = { 
-        male = {
-            mask = { item = 61, texture = 0 },
-            arms = { item = 203, texture = 0 },
-            shirt = { item = 195, texture = 0 },
-            jacket = { item = 178, texture = 0 },
-            pants = { item = 11, texture = 0 },
-            shoes = { item = 15, texture = 0 },
-            hat = { item = -1, texture = 0 },
-            glass = { item = 32, texture = 0 },
-            accessories = { item = 0, texture = 0 },
-        },
-        female = {
-            mask = { item = 0, texture = 0 },
-            arms = { item = 4, texture = 0 },
-            shirt = { item = 2, texture = 0 },
-            jacket = { item = 229, texture = 0 },
-            pants = { item = 3, texture = 15 },
-            shoes = { item = 72, texture = 0 },
-            hat = { item = 18, texture = 0 },
-            accessories = { item = 0, texture = 0 },
-        },
-    },
+    cokeTime = 300,
     Reward = 10,
     brokencokefigurecount = 4 , -- how many broken coke figures are needed to make a repaired figure
     cokeparcokefigure = 4, -- how many coke given when broking a coke figure

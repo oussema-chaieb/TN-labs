@@ -140,17 +140,14 @@ local function calculateIngredientQuality(value, perfectValue, rangeMin, rangeMa
 
     if value >= rangeMin and value <= rangeMax then
         local indeviation = math.abs(value - perfectValue)
-        print(indeviation)
         local variation = math.random(1, 9) / 10
         local perfectionScore = indeviation * variation
-        print(perfectionScore)
         result = 100 - perfectionScore
     end
-    print(result)
     return result
 end
 
-function calculateQuality(ingredient1, ingredient2, ingredient3, ingredient4)
+local function calculateQuality(ingredient1, ingredient2, ingredient3, ingredient4)
     local quality1 = calculateIngredientQuality(ingredient1, 34, 32, 38)
     local quality2 = calculateIngredientQuality(ingredient2, 60, 55, 62)
     local quality3 = calculateIngredientQuality(ingredient3, 80, 70, 90)
@@ -329,9 +326,6 @@ RegisterNetEvent('tn-labs:cl:meth:usemachine', function()
     local status = checkLabIngrediants()
     local time = checkWaitTime()
     local quality = checkLabQuality()
-    --print(status)
-    --print(time)
-    --print(quality)
     if time < 1 then
         if quality == 0 then
             if status == 1 then
@@ -366,7 +360,6 @@ RegisterNUICallback('startProcess', function(data, cb)
     }, {}, {}, {}, function() -- Done
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         local resultQuality = calculateQuality(data.ingredient1, data.ingredient2, data.ingredient3, data.ingredient4)
-        print("Quality:", resultQuality)
         TriggerServerEvent("tn-labs:sv:meth:processStarted",resultQuality)
         QBCore.Functions.Notify(Lang:t('success.machinestarted'), "success")
         FreezeEntityPosition(PlayerPedId(), false)

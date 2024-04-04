@@ -67,6 +67,22 @@ function hasRequiredIngredients(requiredIngredients)
     return true
 end
 
+function hasRequiredCokeIngredients(requiredIngredients)
+    local firstIteration = true -- Variable to track if it's the first iteration
+    for ingredient, quantity in pairs(requiredIngredients) do
+        if not firstIteration then -- Check if it's not the first iteration
+            local hasItem = QBCore.Functions.HasItem(ingredient, quantity)
+            if not hasItem then
+                return false
+            end
+        else
+            firstIteration = false -- Update the variable to indicate it's no longer the first iteration
+        end
+    end
+    return true
+end
+
+
 function HackUi(kind, whichone)
 	local p = promise.new() -- Do not touch
     if kind == "ps-ui" then
