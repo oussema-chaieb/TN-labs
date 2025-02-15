@@ -30,9 +30,9 @@ TN-Labs is a FiveM QBCore script that allows players to interact with two types 
 - If you plan to use password protection, ensure the **var-password** script is installed and properly configured.
 
 ### Step 3: Add to Server Configuration
-Add the following line to your `server.cfg` file:
-```plaintext
-ensure tn-labs
+- Add the following line to your `server.cfg` file:
+- check installation folder
+- ensure tn-labs
 ### Step 4: Configure the Script
 - Open the config.lua file located in the tn-labs folder.
 - Customize the settings such as lab locations, prices, and other parameters according to your server's needs.
